@@ -1,0 +1,33 @@
+---
+title: "Regression Modelling"
+author: "DainaE"
+date: "Saturday, May 23, 2015"
+output: word_document
+---
+
+Context
+
+You work for Motor Trend, a magazine about the automobile industry. Looking at a data set of a collection of cars, they are interested in exploring the relationship between a set of variables and miles per gallon (MPG) (outcome). They are particularly interested in the following two questions:
+
+"Is an automatic or manual transmission better for MPG"
+"Quantify the MPG difference between automatic and manual transmissions"
+
+Take the mtcars data set and write up an analysis to answer their question using regression models and exploratory data analyses.
+
+```{r}
+data(mtcars)
+attach(mtcars)
+names(mtcars)
+head(mtcars)
+pairs(~mpg+am+hp+wt,panel=panel.smooth,main="MTCARS Data",pch=21,bg = c("red", "green3")[unclass(am)])
+layout(matrix(c(1,2,3,4),2,2))
+
+plot(glm(mpg ~ as.factor(cyl) + as.factor(am) + hp + wt, data=mtcars))
+```
+
+
+Based on the final model fitting results, we can conclude: 
+
+1. wt increases per 1000lb (0.5 tons), the mpg will decrease by 2.5.
+mpg will decrease very slighly with hp increase.
+Automatic transmission has higher mpg compared to manual tranmission.
